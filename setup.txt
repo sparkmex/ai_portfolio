@@ -1,0 +1,6 @@
+python3  -m venv chat 
+source chat/bin/activate
+
+#install the software
+pip install streamlit
+streamlit run chat_deepseek1.py
