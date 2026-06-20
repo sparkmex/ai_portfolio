@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+openai_venv/
+venv/
+.env
+*.csv
+*.zip
+paginas_md/

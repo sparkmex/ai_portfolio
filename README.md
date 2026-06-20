@@ -1,33 +1,119 @@
-# Deepseek Chat Interface
+# SimpleChat
 
-A simple Streamlit-based chat app that connects to a local Ollama server and uses the `deepseek-llm:7b-chat` model.
+Este proyecto reúne varios ejemplos para trabajar con modelos locales usando **Ollama** y APIs compatibles con OpenAI.
 
-## Requirements
+## Archivos principales
 
-- Python 3.9+
-- `streamlit`
-- `requests`
-- Local Ollama API server running on `http://localhost:11434`
+- `chat.py`  
+  Chat básico con el modelo `deepseek-llm:7b-chat` usando la API de Ollama.
 
-## Install
+- `retrieve_info.py`  
+  Script que descarga una página web, la divide en fragmentos y permite hacer preguntas usando RAG.
+
+- `retrieve_info_md.py`  
+  Versión mejorada que convierte el contenido a Markdown antes de indexarlo, útil para páginas con mucho ruido HTML.
+
+- `sentiment_analysis.py`  
+  Script para analizar el sentimiento de un texto.
+
+- `steps.txt`  
+  Pasos rápidos de configuración.
+
+---
+
+## Requisitos previos
+
+1. Instala [Ollama](https://ollama.com/).
+2. Descarga los modelos que vas a usar:
 
 ```bash
-pip install streamlit requests
+ollama pull deepseek-llm:7b-chat
+ollama pull mistral:7b-instruct
+ollama pull nomic-embed-text
 ```
 
-## Run
+3. Asegúrate de tener Python 3 instalado.
+
+---
+
+## Configuración del entorno virtual
+
+Desde la raíz del proyecto:
 
 ```bash
-streamlit run chat_deepseek1.py
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-## How it works
+Instala las dependencias:
 
-- The script sends user messages to Ollama using HTTP POST to `/api/generate`
-- Messages are streamed back and displayed in the Streamlit UI
-- Conversation history is stored in `st.session_state`
+```bash
+pip install -r requirements.txt
+```
 
-## Notes
+Si aún no tienes el archivo `requirements.txt`, puedes generarlo con:
 
-- Change the model name in `chat_deepseek1.py` if you want to use a different Ollama model.
-- Ensure the Ollama daemon is running locally before starting the Streamlit app.
+```bash
+pip freeze > requirements.txt
+```
+
+---
+
+## Cómo ejecutar `chat.py`
+
+```bash
+python chat.py
+```
+
+Este script:
+- se conecta a `http://localhost:11434/v1`
+- usa la API de Ollama como si fuera OpenAI
+- te permite chatear desde la terminal
+
+---
+
+## Cómo ejecutar `retrieve_info.py`
+
+```bash
+python retrieve_info.py https://ejemplo.com
+```
+
+Ejemplo:
+
+```bash
+python retrieve_info.py https://docs.python.org/3/
+```
+
+---
+
+## Cómo ejecutar `retrieve_info_md.py`
+
+```bash
+python retrieve_info_md.py https://ejemplo.com
+```
+
+Esta versión es útil cuando quieres extraer contenido limpio de una página y hacer preguntas sobre el texto real visible.
+
+---
+
+## Cómo ejecutar `sentiment_analysis.py`
+
+```bash
+python sentiment_analysis.py
+```
+
+---
+
+## Notas importantes
+
+- Asegúrate de que Ollama esté corriendo antes de ejecutar los scripts.
+- Si el modelo tarda en responder, puede ser normal dependiendo de tu computadora.
+- Para preguntas sobre páginas web, `retrieve_info_md.py` suele dar mejores resultados cuando hay mucho ruido HTML.
+
+---
+
+## Dependencias sugeridas
+
+```bash
+pip install openai langchain langchain-community langchain-ollama chromadb beautifulsoup4 requests trafilatura markdownify
+```
