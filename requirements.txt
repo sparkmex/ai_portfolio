@@ -54,6 +54,7 @@ langchain-ollama==0.3.10
 langchain-text-splitters==0.3.11
 langsmith==0.4.37
 lxml==6.1.1
+lxml_html_clean==0.4.5
 markdown-it-py==3.0.0
 markdownify==1.2.2
 marshmallow==3.26.2
