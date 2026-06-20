@@ -45,16 +45,30 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Instala las dependencias:
+### Instalar todas las dependencias del archivo `requirements.txt`
+
+Una vez activado el entorno virtual, ejecuta:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Si aún no tienes el archivo `requirements.txt`, puedes generarlo con:
+Este comando instala todas las librerías listadas en el archivo de dependencias.
+
+### Si quieres generar el archivo `requirements.txt`
+
+Si aún no lo tienes, puedes crear uno con:
 
 ```bash
 pip freeze > requirements.txt
+```
+
+### Verificar la instalación
+
+Puedes comprobar que las librerías quedaron instaladas con:
+
+```bash
+pip list
 ```
 
 ---
